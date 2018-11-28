@@ -1,4 +1,4 @@
-# Configure a CentOS 7 machine for College LDAP [![Build Status](https://travis-ci.org/ImperialCollegeLondon/ic_centos7_ldap.svg?branch=master)](https://travis-ci.org/ImperialCollegeLondon/ic_centos7_ldap)
+[![Build Status](https://travis-ci.org/ImperialCollegeLondon/ic_centos7_ldap.svg?branch=master)](https://travis-ci.org/ImperialCollegeLondon/ic_centos7_ldap)# Configure a CentOS 7 machine for College LDAP
 ## Usage
 
 Add class ldap7 to your control repo and this module will copy and execute (once!) an LDAP configuration script that will allow you to use College authentication.
