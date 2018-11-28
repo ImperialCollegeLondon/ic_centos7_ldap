@@ -2,19 +2,19 @@
 #set -x
 #set -e
 # Import Bash OO Framework
-source "$( cd "${BASH_SOURCE[0]%/*}" && pwd )/lib/oo-bootstrap.sh"
+#source "$( cd "${BASH_SOURCE[0]%/*}" && pwd )/lib/oo-bootstrap.sh"
 
 # Make sure only root can run our script
-if [ "$(id -u)" != "0" ]; then
-   echo "This script must be run as root" 1>&2
-   exit 1
-fi
+#if [ "$(id -u)" != "0" ]; then
+#   echo "This script must be run as root" 1>&2
+#   exit 1
+#fi
 
 # Check to make sure script is running on CentOS/Redhat
-if [ ! -f /etc/redhat-release ]; then
-        echo "This script is for CentOS"
-        exit
-fi
+#if [ ! -f /etc/redhat-release ]; then
+#        echo "This script is for CentOS"
+#        exit
+#fi
 
 echo Installing LDAP and Kerberos clients
 yum install wget vim deltarpm git epel-release -y
