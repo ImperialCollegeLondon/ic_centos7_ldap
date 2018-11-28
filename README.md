@@ -1,5 +1,4 @@
 # Configure a CentOS 7 machine for College LDAP
-
 [![Build Status](https://travis-ci.org/ImperialCollegeLondon/ic_centos7_ldap.svg?branch=master)](https://travis-ci.org/ImperialCollegeLondon/ic_centos7_ldap)
 
 ## Usage
