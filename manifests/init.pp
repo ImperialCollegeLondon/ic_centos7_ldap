@@ -5,7 +5,7 @@ class ldap7 {
     owner  => 'root',
     group  => 'root',
     source => 'puppet:///modules/ic_centos7_ldap/ldap7.sh',
-    notify => Exec['run_ldap_config'],
+    notify => Exec['setup LDAP'],
     before => Exec['setup LDAP']
   }
   # execute LDAP setup script
