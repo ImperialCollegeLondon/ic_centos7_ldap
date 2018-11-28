@@ -1,4 +1,3 @@
-
 # Configure a CentOS 7 machine for College LDAP
 ## Usage
 
