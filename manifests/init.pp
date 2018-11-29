@@ -1,4 +1,5 @@
 class ldap7 {
+  include epel
   # Create LDAP script on host
   file { '/root/ldap7.sh':
     mode   => '0750',
@@ -32,7 +33,6 @@ class ldap7 {
   package { 'vim': }
   package { 'deltarpm': }
   package { 'git': }
-  package { 'epel-release': }
   package { 'pam_mount': }
   package { 'man': }
   package { 'samba-client': }
