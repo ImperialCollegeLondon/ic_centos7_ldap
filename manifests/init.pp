@@ -39,7 +39,6 @@ class ldap7 {
   package { 'samba-common': }
   package { 'cifs-utils': }
   package { 'nfs-utils': }
-  package { 'nfs-utils-lib': }
   package { 'openldap-clients': }
   package { 'nss-pam-ldapd': }
   package { 'krb5-workstation': }
