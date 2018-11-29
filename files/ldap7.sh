@@ -1,35 +1,7 @@
 #!/bin/env bash
-#set -x
-#set -e
-# Import Bash OO Framework
-#source "$( cd "${BASH_SOURCE[0]%/*}" && pwd )/lib/oo-bootstrap.sh"
-
-# Make sure only root can run our script
-#if [ "$(id -u)" != "0" ]; then
-#   echo "This script must be run as root" 1>&2
-#   exit 1
-#fi
-
-# Check to make sure script is running on CentOS/Redhat
-#if [ ! -f /etc/redhat-release ]; then
-#        echo "This script is for CentOS"
-#        exit
-#fi
-
-echo Installing LDAP and Kerberos clients
-yum install wget vim deltarpm git epel-release -y
-yum upgrade -y
-yum install pam_mount man samba-client samba-common cifs-utils nfs-utils nfs-utils-lib epel-release wget ntp openldap-clients nss-pam-ldapd krb5-workstation pam_krb5 net-tools authconfig krb5-libs oddjob-mkhomedir pam_ldap sssd oddjob -y
-service nfs start
-service rpcbind start
-
-
 echo "INFO: setup-authentication.sh: Switch over to LDAP and Kerberos 5"
 ADSERVERS=icads34.ic.ac.uk:88,icads12.ic.ac.uk:88,icads13.ic.ac.uk:88,icads14.ic.ac.uk:88,icads36.ic.ac.uk:88,icads35.ic.ac.uk:88,icads15.ic.ac.uk:88
 authconfig --useshadow --passalgo=sha512 --disablemd5 --disablefingerprint --enableldap --ldapserver unixldap.cc.ic.ac.uk --ldapbasedn ou=everyone,dc=ic,dc=ac,dc=uk --enablekrb5 --krb5realm IC.AC.UK --krb5kdc $ADSERVERS --krb5adminserver $ADSERVERS  --enablecache --enablemkhomedir --updateall
-
-# Configure SSH options and only allow access to the custodian, sysadmin and 
-# owner
 
 echo "INFO: setup-ssh.sh: Configuring sshd and ssh to only use Protocol v2"
 
@@ -64,6 +36,3 @@ for FIELD in "${OWNER}" "${CUSTODIAN}" "${SYSADMIN}"; do
 done
 
 echo "AllowGroups sshd" >> /etc/ssh/sshd_config
-
-
-echo Please test that you can su to an IC user.

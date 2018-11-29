@@ -18,9 +18,51 @@ class ldap7 {
   # Trap door to only allow LDAP setup once
   file { '/root/.ldap7.configured':
     ensure  => present,
-    content => 'This file is managed by Puppet.\nLDAP setup completed.',
+    content => 'This file is managed by Puppet. LDAP setup completed.',
     owner   => 'root',
     group   => 'root',
     mode    => '0640',
   }
+  # Install requirements for LDAP 
+  Package {ensure => 'installed',
+    before => Exec['setup LDAP']
+  }
+
+  package { 'wget': }
+  package { 'vim': }
+  package { 'deltarpm': }
+  package { 'git': }
+  package { 'epel-release': }
+  package { 'pam_mount': }
+  package { 'man': }
+  package { 'samba-client': }
+  package { 'samba-common': }
+  package { 'cifs-utils': }
+  package { 'nfs-utils': }
+  package { 'nfs-utils-lib': }
+  package { 'openldap-clients': }
+  package { 'nss-pam-ldapd': }
+  package { 'krb5-workstation': }
+  package { 'pam_krb5': }
+  package { 'net-tools': }
+  package { 'authconfig': }
+  package { 'krb5-libs': }
+  package { 'oddjob-mkhomedir': }
+  package { 'pam_ldap': }
+  package { 'sssd': }
+  package { 'oddjob': }
+
+  service { 'nfs':
+    ensure => 'running',
+    enable => true,
+    before => Exec['setup LDAP']
+  }
+
+  service { 'rpcbind':
+    ensure => 'running',
+    enable => true,
+    before => Exec['setup LDAP']
+  }
 }
+
+
