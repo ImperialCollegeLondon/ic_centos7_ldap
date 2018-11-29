@@ -18,7 +18,7 @@ class ldap7 {
   # Trap door to only allow LDAP setup once
   file { '/root/.ldap7.configured':
     ensure  => present,
-    content => 'LDAP setup completed. Managed by Puppet',
+    content => 'This file is managed by Puppet.\nLDAP setup completed.',
     owner   => 'root',
     group   => 'root',
     mode    => '0640',
