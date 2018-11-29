@@ -19,12 +19,11 @@
 echo Installing LDAP and Kerberos clients
 yum install wget vim deltarpm git epel-release -y
 yum upgrade -y
-rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
-yum install man samba-client samba-common cifs-utils nfs-utils nfs-utils-lib epel-release wget ntp openldap-clients nss-pam-ldapd krb5-workstation pam_krb5 net-tools authconfig krb5-libs oddjob-mkhomedir pam_ldap sssd oddjob -y
+yum install pam_mount man samba-client samba-common cifs-utils nfs-utils nfs-utils-lib epel-release wget ntp openldap-clients nss-pam-ldapd krb5-workstation pam_krb5 net-tools authconfig krb5-libs oddjob-mkhomedir pam_ldap sssd oddjob -y
 service nfs start
 service rpcbind start
 
-yum install pam_mount -y
+
 echo "INFO: setup-authentication.sh: Switch over to LDAP and Kerberos 5"
 ADSERVERS=icads34.ic.ac.uk:88,icads12.ic.ac.uk:88,icads13.ic.ac.uk:88,icads14.ic.ac.uk:88,icads36.ic.ac.uk:88,icads35.ic.ac.uk:88,icads15.ic.ac.uk:88
 authconfig --useshadow --passalgo=sha512 --disablemd5 --disablefingerprint --enableldap --ldapserver unixldap.cc.ic.ac.uk --ldapbasedn ou=everyone,dc=ic,dc=ac,dc=uk --enablekrb5 --krb5realm IC.AC.UK --krb5kdc $ADSERVERS --krb5adminserver $ADSERVERS  --enablecache --enablemkhomedir --updateall
